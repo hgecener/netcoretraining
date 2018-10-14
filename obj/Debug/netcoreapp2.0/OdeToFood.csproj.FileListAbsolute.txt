@@ -1,0 +1,11 @@
+D:\git-repos\DotNetTraining\OdeToFood\bin\Debug\netcoreapp2.0\OdeToFood.deps.json
+D:\git-repos\DotNetTraining\OdeToFood\bin\Debug\netcoreapp2.0\OdeToFood.runtimeconfig.json
+D:\git-repos\DotNetTraining\OdeToFood\bin\Debug\netcoreapp2.0\OdeToFood.runtimeconfig.dev.json
+D:\git-repos\DotNetTraining\OdeToFood\bin\Debug\netcoreapp2.0\OdeToFood.dll
+D:\git-repos\DotNetTraining\OdeToFood\bin\Debug\netcoreapp2.0\OdeToFood.pdb
+D:\git-repos\DotNetTraining\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.csprojAssemblyReference.cache
+D:\git-repos\DotNetTraining\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.csproj.CoreCompileInputs.cache
+D:\git-repos\DotNetTraining\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.AssemblyInfoInputs.cache
+D:\git-repos\DotNetTraining\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.AssemblyInfo.cs
+D:\git-repos\DotNetTraining\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.dll
+D:\git-repos\DotNetTraining\OdeToFood\obj\Debug\netcoreapp2.0\OdeToFood.pdb
