@@ -29,46 +29,28 @@ namespace OdeToFood
         // Uses dependency injection and looks up the cunfigure parameters which are like IApplicationBuilder and IHostingEnvironment
         // Responde the request
         public void Configure(IApplicationBuilder app, 
-                            IHostingEnvironment env,
+                            IHostingEnvironment env,  // ASPNETCORE_ENVIRONMENT variable is default "Production"
                             //IConfiguration configuration, **1**
                             IGreeter greeter,
                             ILogger<Startup> logger)
         {
-            // if (env.IsDevelopment())
-            // {
-            //     app.UseDeveloperExceptionPage();
-            // }
-
-            app.Use(next => {
-                // This is middleware
-                return async context =>{
-                    logger.LogInformation("Request incomming ****");
-                    if (context.Request.Path.StartsWithSegments("/mym")){
-                        await context.Response.WriteAsync("Hit!!!"); // Response is sent. no next step.
-                        logger.LogInformation("Request handled ****");
-                    }
-                    else
-                    {
-                        await next(context); // Goes next method in the pipeline below
-                        logger.LogInformation("Request outgoing ****");
-                    }
-
-                };
-            });  //Adds a middleware delegate to the application's request pipeline.
-
-            app.UseWelcomePage(new WelcomePageOptions
+            // This gives error details only if development runs.. not in Production
+            if (env.IsDevelopment())
             {
-                Path="/wp" // only returns /wp is entered in URL. 
-            }); // This allows pass object which is now WelcomPageOptios..
-            // If you don't give Welcome object always return Welcome page and does not run rest of the code below.. *** Important
+                 app.UseDeveloperExceptionPage(); // **1.1**
+            }
 
             app.Run(async (context) =>
             {
+                 if (env.IsDevelopment()){
+                    throw new Exception("Error!!"); // **1.1** Throw error and UseDeveloperExceptionPage handles and displays above****
+                 }
                 //var greeting = configuration["Greeting"]; // **1** Gets "Greeting" property from appsettings.json file by IConfiguration object
                 // Looks if there is Environment variable is named "Greeting" is override to appsettings, 
+               
                 //Command Line Arguments also overrides to all.
                 var greeting = greeter.GetMessageOfTheDay();
-                await context.Response.WriteAsync( greeting );
+                await context.Response.WriteAsync( $"{greeting} : {env.EnvironmentName} ");
             });
         }
     }
