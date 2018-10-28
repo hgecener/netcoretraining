@@ -42,8 +42,8 @@ namespace OdeToFood
 
             // app.UseDefaultFiles(); // Default file names are configurable. Like "index.html". You can configure in method parameters.(args)
             // app.UseStaticFiles(); // Serves the files under wwwroot folder... If nothing finds a releated file passes to next method
-
-            app.UseFileServer();
+        
+            app.UseFileServer(); // Allow static files
 
             app.Run(async (context) =>
             {

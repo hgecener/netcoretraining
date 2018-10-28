@@ -49,14 +49,7 @@ namespace OdeToFood
            
             app.UseStaticFiles(); // Serves the files under wwwroot folder... If nothing finds a releated file passes to next method
 
-            //  app.UseMvcWithDefaultRoute(); // Route ad Default ... like Default files "index" and look for index in Controller
-
-            // app.UseWelcomePage(); // Returns default page in every request.. 
-            // app.UseWelcomePage(new WelcomePageOptions  
-            // {
-            //     Path="/wp"
-            // });   // Returns default page if /wp path is requested... 
-
+           
             // *** Convention based routing ****
             app.UseMvc(ConfigureRoutes);
 
@@ -68,7 +61,7 @@ namespace OdeToFood
                 //     throw new Exception("Error!!"); // **1.1** Throw error and UseDeveloperExceptionPage handles and displays above****
                 //  }
                 //var greeting = configuration["Greeting"]; // **1** Gets "Greeting" property from appsettings.json file by IConfiguration object
-                // Looks if there is Environment variable is named "Greeting" is override to appsettings, 
+                // Looks if there is Environment variable is named "Greeting" is override to appsettings, like appsettings.Development.json 
 
                 //Command Line Arguments also overrides to all.
                 var greeting = greeter.GetMessageOfTheDay();
