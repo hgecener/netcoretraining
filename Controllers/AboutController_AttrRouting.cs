@@ -6,7 +6,7 @@ namespace OdeToFood.Controllers
   //[Route("about")]  //This is "Attribute Routing"
   [Route("[controller]")]  // The [controller] token is used...
  // [Route("api/[controller]/[action]")]  // The api/[controller]/[action] token is used...And literal syntax as well.
-  public class AboutController : Controller
+  public class AboutController2 : Controller
   {
      [Route("")] // If this is blank means default 
     public string Phone(){

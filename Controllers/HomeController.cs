@@ -6,11 +6,11 @@ using Microsoft.Extensions.Logging;
 namespace OdeToFood.Controllers
 {
 
-  public class HomeController : Controller
+  public class HomeController : Controller // : Controller class provides MVC methods
   {
-      public string Index()
+      public IActionResult Index()
       {
-          return "Hello from the HomeController";
+          return Content("Hello from the HomeController");
       }
 
   }
