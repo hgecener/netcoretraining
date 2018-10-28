@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace OdeToFood
 {
-    public class Startup
+    public class StartupMiddle
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -33,7 +33,7 @@ namespace OdeToFood
         // Responde the request
         // Configure method runs once
         public void Configure(IApplicationBuilder app, // Building application here...
-                            IHostingEnvironment env,  // ASPNETCORE_ENVIRONMENT variable is default "Production". Look lauch.json
+                            IHostingEnvironment env,  // ASPNETCORE_ENVIRONMENT variable is default "Production"
                                                       //IConfiguration configuration, **1**
                             IGreeter greeter,
                             ILogger<Startup> logger)
@@ -43,10 +43,27 @@ namespace OdeToFood
             // This gives error details only if development runs.. not in Production
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage(); // **1.1** Handle error here..Gives detailed information here.In production should be closed.
+                app.UseDeveloperExceptionPage(); // **1.1**
             }
 
-           
+            app.Use(next =>
+            {
+                return async context => {
+                    logger.LogInformation("Request incoming");
+                    if (context.Request.Path.StartsWithSegments("/mym"))
+                    {
+                        await context.Response.WriteAsync("Hit!!..");
+                        logger.LogInformation("Request incoming");
+                    } 
+                    else
+                    {
+                        await next(context);
+                        logger.LogInformation("Request incoming");
+                    }
+                };
+            });
+
+
             app.UseStaticFiles(); // Serves the files under wwwroot folder... If nothing finds a releated file passes to next method
 
             //  app.UseMvcWithDefaultRoute(); // Route ad Default ... like Default files "index" and look for index in Controller
