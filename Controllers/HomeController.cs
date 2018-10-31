@@ -2,15 +2,22 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OdeToFood.Models;
 
 namespace OdeToFood.Controllers
 {
 
-  public class HomeController : Controller // : Controller class provides MVC methods
+  public class HomeController : Controller // : Controller class provides MVC methods...
   {
-      public IActionResult Index()
+    //   public ContentResult Index()
+    //   {
+    //   }
+      public IActionResult Index()  
       {
-          return Content("Hello from the HomeController");
+          // this does not write immediately to response, returns to IAction then decides. Allows unit testing
+          var model = new Restaurant { Id = 1, Name = "Scott's Pizza Place"};
+
+          return new ObjectResult(model); // This returns serialize the object to Json format
       }
 
   }
