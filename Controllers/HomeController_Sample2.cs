@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 namespace OdeToFood.Controllers
 {
 
-  public class HomeController2 : Controller
+  public class HomeControllerSample2 : Controller
   {
       public string Index()
       {

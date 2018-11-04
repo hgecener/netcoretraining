@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration; // IConfiguration reads appsettings.json properties.
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
+using OdeToFood.Services;
 
 namespace OdeToFood
 {
@@ -41,10 +42,10 @@ namespace OdeToFood
             // MIDDLEEWARE 
             //**** IMPORTANT:  Be careful the order which is created in Middleware.  Runs first possible returns  */
             // This gives error details only if development runs.. not in Production
-            if (env.IsDevelopment())
-            {
+            // if (env.IsDevelopment())
+            // {
                 app.UseDeveloperExceptionPage(); // **1.1** Handle error here..Gives detailed information here.In production should be closed.
-            }
+            // }
 
            
             app.UseStaticFiles(); // Serves the files under wwwroot folder... If nothing finds a releated file passes to next method

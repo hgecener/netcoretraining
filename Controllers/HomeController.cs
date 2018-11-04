@@ -7,18 +7,19 @@ using OdeToFood.Models;
 namespace OdeToFood.Controllers
 {
 
-  public class HomeController : Controller // : Controller class provides MVC methods...
-  {
-    //   public ContentResult Index()
-    //   {
-    //   }
-      public IActionResult Index()  
-      {
-          // this does not write immediately to response, returns to IAction then decides. Allows unit testing
-          var model = new Restaurant { Id = 1, Name = "Scott's Pizza Place"};
+    public class HomeController : Controller // : Controller class provides MVC methods...
+    {
+        public IActionResult Index()
+        {
+            // this does not write immediately to response, returns to IAction then decides. Allows unit testing
+            var model = new Restaurant
+            {
+                Id = 1,
+                Name = "Scott's Pizza Place"
+            };
 
-          return new ObjectResult(model); // This returns serialize the object to Json format
-      }
+            return View(model); //If a index.cshtml is not found gives an error.
+        }
 
-  }
+    }
 }
