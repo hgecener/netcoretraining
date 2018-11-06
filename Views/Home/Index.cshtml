@@ -1,22 +1,23 @@
 <!-- This is directive.. please be noticed model starts with lowercase... Influencing the code generation in this view.. Like using directive  -->
-@model OdeToFood.Models.Restaurant
+@model IEnumerable<OdeToFood.Models.Restaurant>
 
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
-</head>
+    <head>
+        <title>Page Title</title>
+    </head>
 
-<body>
-    <!-- this.Model object.. investigate this object later -->
-    <h1>@Model.Name</h1>
-<div>The ID value is is @Model.Id</div>
-</body>
+    <body>
 
-</html>
+        <table>
+            @foreach(var restaurant in Model) {
+            <tr>
+                <td>@restaurant.Id</td>
+                <td>@restaurant.Name</td>
+            </tr>
+            }
+        </table>
+    </body>
+
+    </html>
