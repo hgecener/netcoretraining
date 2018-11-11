@@ -1,0 +1,18 @@
+@model OdeToFood.Models.Restaurant
+
+<html>
+<head>
+    <title>Details</title>
+</head>
+<body>
+    <!-- This is not preferrable to avoid null restaurant data -->
+    @if(Model == null)
+    {
+        <div>Not Found</div>
+
+    } else {
+        <h1>@Model.Name</h1>
+        <div>... details ...</div>
+    }
+</body>
+</html>

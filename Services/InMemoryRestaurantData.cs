@@ -15,7 +15,7 @@ namespace OdeToFood.Services
             {
               new Restaurant {Id = 1, Name = "Scott's Pizza Place" },
               new Restaurant {Id = 2, Name = "Tersiguels" },
-              new Restaurant {Id = 1, Name = "King's Contrivance" }
+              new Restaurant {Id = 3, Name = "King's Contrivance" }
 
             };
         }
@@ -23,6 +23,12 @@ namespace OdeToFood.Services
         {
             return _restaurants.OrderBy(r => r.Name);
         }
+
+        public Restaurant Get(int id)
+        {
+            return _restaurants.FirstOrDefault(r => r.Id == id);
+        }
+
         List<Restaurant> _restaurants;
 
 
