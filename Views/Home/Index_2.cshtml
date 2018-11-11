@@ -1,5 +1,5 @@
 <!-- This is directive.. please be noticed model starts with lowercase... Influencing the code generation in this view.. Like using directive  -->
-@model OdeToFood.ViewModels.HomeIndexViewModel
+@model IEnumerable<OdeToFood.Models.Restaurant>
 
     <!DOCTYPE html>
     <html>
@@ -9,9 +9,9 @@
     </head>
 
     <body>
-        <h1>@Model.CurrentMessage</h1>
+
         <table>
-            @foreach(var restaurant in Model.Restaurants) {
+            @foreach(var restaurant in Model) {
             <tr>
                 <td>@restaurant.Id</td>
                 <td>@restaurant.Name</td>
