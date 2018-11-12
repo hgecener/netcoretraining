@@ -29,6 +29,13 @@ namespace OdeToFood.Services
             return _restaurants.FirstOrDefault(r => r.Id == id);
         }
 
+        public Restaurant Add(Restaurant restaurant)
+        {
+            restaurant.Id = _restaurants.Max(r => r.Id) + 1;
+            _restaurants.Add(restaurant); // This Add method for list restaurant C# function.
+            return restaurant; // Holds the data in memeory.
+        }
+
         List<Restaurant> _restaurants;
 
 

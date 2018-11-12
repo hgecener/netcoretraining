@@ -12,7 +12,9 @@
 
     } else {
         <h1>@Model.Name</h1>
-        <div>... details ...</div>
+        <!-- <div>... details ...</div> -->
+        <div>Id: @Model.Id</div>
+        <div>Cuisine: @Model.Cuisine</div>
         <a asp-action="index" asp-controller="home">Home</a>
     }
 </body>

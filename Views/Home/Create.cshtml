@@ -1,16 +1,28 @@
-@using OdeToFood.Models
+@using OdeToFood.Models 
 @model Restaurant
 
 <h1>Create</h1>
 
 <!-- Post the form to the same URL that this page is rendered -->
 <form method="post">
-  <!-- <input type="text" name="Name" value="" />    // Also can be used-->
-  <input asp-for="Name">
+  <!-- <input type="text" name="Name" value="" />    // Also can be used -->
 
-  <select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()">
-      
-  </select>
+  <!--
+    Data Annotations for Models:  Required, Compare, DataType, Dispaly, Range, RegularExpression, Min/Max Length
+  -->
+
+  <div>
+    <label asp-for="Name"></label> <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+  </div>
+
+  <div>
+    <label asp-for="Cuisine"></label>
+    <select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()">
+      <span asp-validation-for="Cuisine"></span>
+    </select>
+  </div>
 
   <input type="submit" value="Save" name="save" />
+  <!-- Check how to display all errors as summary -->
 </form>

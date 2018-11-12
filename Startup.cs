@@ -24,7 +24,11 @@ namespace OdeToFood
         {
             // Here Dependency injections
             services.AddSingleton<IGreeter, Greeter>(); // Paseses Interface and Class here.. Class is implementation here. Dpendincy Injection
-            services.AddScoped<IRestaurantData, InMemoryRestaurantData>(); // AddScope uses IRestaurantData for one instances and create another for other request.. Typically for data access
+            //services.AddScoped<IRestaurantData, InMemoryRestaurantData>(); // AddScope uses IRestaurantData for one instances and create another for other request.. Typically for data access
+
+            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>(); // NOT for production just for testing in development
+
+
             services.AddMvc(); // Need to add Mvc services if use Mvc
 
         }
