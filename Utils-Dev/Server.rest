@@ -1,0 +1,11 @@
+
+GET http://localhost:5000/home
+
+###
+
+GET http://localhost:5000/home/Db
+
+
+
+
+

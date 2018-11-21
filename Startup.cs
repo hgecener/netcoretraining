@@ -10,11 +10,19 @@ using Microsoft.Extensions.Configuration; // IConfiguration reads appsettings.js
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
 using OdeToFood.Services;
+using Microsoft.EntityFrameworkCore;
+using OdeToFood.Data;
 
 namespace OdeToFood
 {
     public class Startup
     {
+        private IConfiguration _configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         // Configures how .Net framework bhaves
@@ -24,10 +32,17 @@ namespace OdeToFood
         {
             // Here Dependency injections
             services.AddSingleton<IGreeter, Greeter>(); // Paseses Interface and Class here.. Class is implementation here. Dpendincy Injection
-            //services.AddScoped<IRestaurantData, InMemoryRestaurantData>(); // AddScope uses IRestaurantData for one instances and create another for other request.. Typically for data access
+                                                        //services.AddScoped<IRestaurantData, InMemoryRestaurantData>(); // AddScope uses IRestaurantData for one instances and create another for other request.. Typically for data access
 
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>(); // NOT for production just for testing in development
+            // services.AddSingleton<IRestaurantData, InMemoryRestaurantData>(); // NOT for production just for testing in development 
+            // accessing the data in memory
 
+            //services.AddSingleton<IRestaurantData, SqlRestaurantData>();  // **** Singleton is very dangerous
+
+            services.AddDbContext<OdeToFoodDbContext>(
+                options => options.UseSqlServer(_configuration.GetConnectionString("OdeToFood"))); // SQL server connection
+
+            services.AddScoped<IRestaurantData, SqlRestaurantData>(); // So scoped for each thread 
 
             services.AddMvc(); // Need to add Mvc services if use Mvc
 
@@ -49,13 +64,13 @@ namespace OdeToFood
             // This gives error details only if development runs.. not in Production
             // if (env.IsDevelopment())
             // {
-                app.UseDeveloperExceptionPage(); // **1.1** Handle error here..Gives detailed information here.In production should be closed.
-            // }
+            app.UseDeveloperExceptionPage(); // **1.1** Handle error here..Gives detailed information here.In production should be closed.
+                                             // }
 
-           
+
             app.UseStaticFiles(); // Serves the files under wwwroot folder... If nothing finds a releated file passes to next method
 
-           
+
             // *** Convention based routing ****
             app.UseMvc(ConfigureRoutes);
 
@@ -83,8 +98,8 @@ namespace OdeToFood
         private void ConfigureRoutes(IRouteBuilder routeBuilder)
         {
             // Home/Index  => ControllerName/ActionName
-             // Give template here by {}
-             // This is called "Default Route" or "Conventional Route"
+            // Give template here by {}
+            // This is called "Default Route" or "Conventional Route"
             routeBuilder.MapRoute("Default",
                                 "{controller=Home}/{action=Index}/{id?}");  //  assign default paramaters using =  , if controller and action are not provided. 
             // admin/Home/Index/4  => admin/ControllerName/ActionName/parameter .... ? says is optional
