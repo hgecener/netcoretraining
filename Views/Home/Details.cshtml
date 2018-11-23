@@ -1,21 +1,14 @@
-@model OdeToFood.Models.Restaurant
+@model OdeToFood.Models.Restaurant 
 
-<html>
-<head>
-    <title>Details</title>
-</head>
-<body>
-    <!-- This is not preferrable to avoid null restaurant data -->
-    @if(Model == null)
-    {
-        <div>Not Found</div>
+@{ ViewBag.Title = Model.Name; }
 
-    } else {
-        <h1>@Model.Name</h1>
-        <!-- <div>... details ...</div> -->
-        <div>Id: @Model.Id</div>
-        <div>Cuisine: @Model.Cuisine</div>
-        <a asp-action="index" asp-controller="home">Home</a>
-    }
-</body>
-</html>
+<!-- This is not preferrable to avoid null restaurant data -->
+@if(Model == null) {
+<div>Not Found</div>
+
+} else {
+<h1>@Model.Name</h1>
+<!-- <div>... details ...</div> -->
+<div>Id: @Model.Id</div>
+<div>Cuisine: @Model.Cuisine</div>
+<a asp-action="index" asp-controller="home">Home</a> }

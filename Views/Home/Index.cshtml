@@ -1,35 +1,37 @@
-<!-- This is directive.. please be noticed model starts with lowercase... Influencing the code generation in this view.. Like using directive  -->
+<!--
+  This is directive.. please be noticed model starts with lowercase... Influencing the code generation in this view.. Like using directive
+  model is defined with a namespace ("using" is not used here) 
+-->
 @model OdeToFood.ViewModels.HomeIndexViewModel
 
-<!DOCTYPE html>
-<html>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Layout = null could be used if you would like not to render the layout -->
 
-<head>
-    <title>Page Title</title>
-</head>
+<h1>All Restaurants</h1>
+<table>
+  @foreach(var restaurant in Model.Restaurants) {
+  <tr>
+    <td>@restaurant.Id</td>
+    <td>@restaurant.Name</td>
+    <td>
+      <!-- Simple way -->
+      <a href="/home/details/@restaurant.Id">Details</a>
 
-<body>
-    <h1>@Model.CurrentMessage</h1>
-    <table>
-        @foreach(var restaurant in Model.Restaurants) {
-        <tr>
-            <td>@restaurant.Id</td>
-            <td>@restaurant.Name</td>
-            <td>
-                <!-- Simple way -->
-                <a href="/home/details/@restaurant.Id">Details</a>
+      <!-- This is considered more robust.. Html helper is very old method -->
+      @Html.ActionLink("Go","details", new { id = restaurant.Id})
 
-                <!-- This is considered more robust.. Html helper is very old method  -->
-                @Html.ActionLink("Go","details", new { id = restaurant.Id})
+      <!-- Helper Tag : more common way nowadays -->
+      <a asp-action="details" asp-route-id="@restaurant.Id">More</a>
+    </td>
+  </tr>
+  }
+</table>
 
-                <!-- Helper Tag : more common way nowadays -->
-                <a asp-action="details" asp-route-id="@restaurant.Id">More</a>
+<a asp-action="Create">Add Restaurant</a>
 
-            </td>
-        </tr>
-        }
-    </table>
-    <a asp-action="Create">Add Restaurant</a>
-</body>
-
-</html>
+@section footer {
+    @Model.CurrentMessage
+}
