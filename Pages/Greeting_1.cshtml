@@ -1,0 +1,12 @@
+@page
+<!-- This page directive defines the page is a Razor Page -->
+
+@inject IGreeter Greeter
+<!-- The services can be injected in the page.. This could be dengerous that you have too many injection here.. Use other one-->
+
+<div>@Greeter.GetMessageOfTheDay()</div>
+
+<div>
+    Hello!..
+</div>
+<div>@DateTime.Now.Year</div>
