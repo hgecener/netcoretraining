@@ -11,6 +11,7 @@ public interface IRestaurantData
     IEnumerable<Restaurant> GetAll(); // returns a Restaurnt object list that is iterable
     Restaurant Get(int id); // returns Restaurant object
     Restaurant Add(Restaurant restaurant); // Added later when creting post method
+    Restaurant Update(Restaurant restaurant); // Added when creating Edit Razor page
 
 }
 

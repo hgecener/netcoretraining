@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using OdeToFood.Data;
 using OdeToFood.Models;
 
 namespace OdeToFood.Services
 {
+    // Use Ctrl + . to implement Interface here if you get error under IRestaurantData
     public class SqlRestaurantData : IRestaurantData
     {
         private OdeToFoodDbContext _context;
@@ -33,5 +35,16 @@ namespace OdeToFood.Services
            return _context.Restaurants.OrderBy(r => r.Name);
         }
 
+        public Restaurant Update(Restaurant restaurant)
+        {
+            // Attaching dbcontext
+
+            //_context.Attach(restaurant).State = Microsoft.EntityFrameworkCore.EntityState.Modified; 
+            //This also can be used without adding Microsoft.EntityFrameworkCore on top
+
+            _context.Attach(restaurant).State = EntityState.Modified; // This is same as upper way
+            _context.SaveChanges();
+            return restaurant;
+        }
     }
 }
