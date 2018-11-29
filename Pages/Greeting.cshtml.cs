@@ -18,9 +18,11 @@ namespace OdeToFood.Pages
         {
             _greeter = greeter;
         }
-        public void OnGet()
+        //"name" is string paramater is recived from URL  hostname/<pagename>/{name}
+        public void OnGet(string name)
         {
-            CurrentGreeting = _greeter.GetMessageOfTheDay();
+            //CurrentGreeting = _greeter.GetMessageOfTheDay();
+            CurrentGreeting = $"{name}: {_greeter.GetMessageOfTheDay()}";
         }
     }
 }
